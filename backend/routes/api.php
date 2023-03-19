@@ -32,3 +32,4 @@ Route::get('/log',[UserAction::class,"test"]);
 Route::get('/users/{id}',[UserAction::class,"getUsers"]);
 Route::post('/block',[UserAction::class,"block"]);
 Route::post('/unblock',[UserAction::class,"unblock"]);
+Route::post('/favorite',[UserAction::class,"favorite"]);
