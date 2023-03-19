@@ -156,4 +156,34 @@ class UserAction extends Controller
         }
     }
 
+    public function unfavorite(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'favorite_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => $validator->errors()
+            ], 400);
+        }
+
+        $user_id = Auth::id();
+        $favorite_id = $request->favorite_id;
+        $already = Favorite::where('user_id', $user_id)->where('favorite_id', $favorite_id);
+        if ($already->exists()) {
+            $already->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'user removed from your favorites'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'user is not in your favorites'
+            ]);
+        }
+    }
+
 }
