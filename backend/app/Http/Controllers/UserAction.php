@@ -52,11 +52,13 @@ class UserAction extends Controller
 
     }
 
-    public function getUsers($gender_id)
+    public function getUsers()
     {
-        $users = User::where('gender_id', '!=', $gender_id)->get();
-        if ($users) {
-            return response()->json($users);
+        $user_id = Auth::id();
+        $user_gender = User::where('id', $user_id)->select('gender_id')->first();
+        $opposite = User::where('gender_id','!=',$user_gender)->get();
+        if (!empty($opposite)) {
+            return response()->json($opposite);
         } else {
             return response()->json(['message' => 'No users']);
         }
