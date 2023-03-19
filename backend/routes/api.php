@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserAction;
+use App\Http\Controllers\Search;
 
 // Route::controller(AuthController::class)->group(function () {
 //     Route::post('/login', 'login');
@@ -34,3 +35,4 @@ Route::post('/block',[UserAction::class,"block"]);
 Route::post('/unblock',[UserAction::class,"unblock"]);
 Route::post('/favorite',[UserAction::class,"favorite"]);
 Route::post('/unfavorite',[UserAction::class,"unfavorite"]);
+Route::post('/search/name',[Search::class,"search"]);
