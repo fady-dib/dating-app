@@ -93,4 +93,33 @@ class UserAction extends Controller
         }
     }
 
+    public function unblock(Request $request) {
+        $validator = Validator::make($request->all(),[
+            'blocked_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => $validator->errors()
+            ], 401);
+        }
+
+        $user_id = Auth::id();
+        $blocked_id = $request->blocked_id;
+        $already_blocked = Block::where('user_id', $user_id)->where('blocked_id',$blocked_id);
+        if($already_blocked->exists()){
+            $already_blocked->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'user unblocked successfully'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'user is not blocked'
+            ]);
+        }
+}
 }
