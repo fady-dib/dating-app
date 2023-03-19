@@ -23,7 +23,7 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/refresh', [AuthController::class, 'refresh']); 
     // Route::post('/log', [AuthController::class, 'test']);
-    Route::put('/editprofile/{id}',[UserAction::class,"editProfile"]);
+    Route::post('/editprofile',[UserAction::class,"editProfile"]);
     
 });
 

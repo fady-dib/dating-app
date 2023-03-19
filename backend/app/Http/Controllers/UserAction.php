@@ -11,14 +11,21 @@ use Illuminate\Support\Facades\Validator;
 
 class UserAction extends Controller
 {
-    public function editProfile(Request $request, $id)
+    public function editProfile(Request $request)
     {
+
+        if(empty($request->all())){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'at least 1 field required',
+            ], 200);
+        }
         //one uppercase letter, one lowercase letter, one number, and one special character.regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6',
+            'first_name' => 'min:3',
+            'last_name' => 'min:3',
+            'email' => 'string|email|max:255',
+            'password' => 'string|min:6',
             'bio' => 'string|max:255',
             'gender_id' => 'integer|max:1',
             'dob' => 'date',
@@ -26,18 +33,18 @@ class UserAction extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
-        // $user = User::where('id', $request->id)->first();
-        $user = User::find($id);
-        if ($user) {
+    
+        $user_id = Auth::id();
+        // dd($user_id);
+        if ($user_id) {
+            $user = User::where('id', $user_id)->first();
             $user->update($request->all());
-            $user->save();
             return response()->json([
                 'status' => 'success',
                 'message' => 'Profile updated',
             ], 200);
         } else {
-            dd('user not found');
+            // dd('user not found');
             return response()->json([
                 'status' => 'failed',
             ], 404);
