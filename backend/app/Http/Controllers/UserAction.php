@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Block;
 use App\Models\Favorite;
+use App\Models\Picture;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,8 @@ class UserAction extends Controller
     {
         $user_id = Auth::id();
         $user_gender = User::where('id', $user_id)->select('gender_id')->first();
-        $opposite = User::where('gender_id','!=',$user_gender)->get();
+        $opposite = User::join('pictures','users.id','=','pictures.user_id')
+        ->where('gender_id','!=',$user_gender)->get();
         if (!empty($opposite)) {
             return response()->json($opposite);
         } else {
@@ -195,4 +197,47 @@ class UserAction extends Controller
         }
     }
 
+    public function addPicture(Request $request){
+        $user_id = Auth::id();
+        $file =$request->file('picture');
+        $base64Image= base64_encode(file_get_contents($file->path()));
+        $picture = new Picture;
+        $picture ->user_id =$user_id;
+        $picture->link = $base64Image;
+        $picture->save();
+        return response()->json([
+            'message' => 'Picture added successfully'
+        ]);
+    }
+    public function updatePicture(Request $request)
+    {
+        $user_id = Auth::id();
+        $picture = Picture::find($user_id);
+        if (!$picture) {
+            return response()->json(['message' => 'Picture not found'], 404);
+        }
+        $file = $request->file('picture');
+        $base64Image = base64_encode(file_get_contents($file->path()));
+        $picture->link = $base64Image;
+        $picture->save();
+        return response()->json([
+            'message' => 'Picture updated successfully'
+        ]);
+    }
+
+    public function deletePicture(Request $request){
+        $user_id = Auth::id();
+        $picture = Picture::find($user_id);
+        if (!$picture) {
+            return response()->json(['message' => 'Picture not found'], 404);
+        }
+        else{
+            $picture->delete();
+        }
+    }
+    
+    
+    
+    
+    
 }
