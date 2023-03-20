@@ -36,3 +36,4 @@ Route::post('/unblock',[UserAction::class,"unblock"]);
 Route::post('/favorite',[UserAction::class,"favorite"]);
 Route::post('/unfavorite',[UserAction::class,"unfavorite"]);
 Route::post('/search/name',[Search::class,"search"]);
+Route::post('/addpicture',[UserAction::class,"addPicture"]);

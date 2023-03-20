@@ -56,11 +56,17 @@ class UserAction extends Controller
     public function getUsers()
     {
         $user_id = Auth::id();
-        $user_gender = User::where('id', $user_id)->select('gender_id')->first();
-        $opposite = User::join('pictures','users.id','=','pictures.user_id')
-        ->where('gender_id','!=',$user_gender)->get();
-        if (!empty($opposite)) {
-            return response()->json($opposite);
+        $user_gender = User::where('id', $user_id)->value('gender_id');
+        //  $opposite = User::join('pictures','pictures.user_id','=','users.id')
+        //  ->where('users.gender_id','!=',$user_gender)->get(['users.*']);
+        //  dd($opposite);
+        $users = User::where('gender_id','!=',$user_gender)->get();
+        $picture = Picture::where('user_id',$user_id)->get();
+        $data = [
+            "users"=>$users,
+            "pictures"=>$picture];
+        if (!empty($users)) {
+            return response()->json($data);
         } else {
             return response()->json(['message' => 'No users']);
         }
@@ -69,6 +75,14 @@ class UserAction extends Controller
     public function test()
     {
         dd('hi');
+        $users = User::select(
+            "users.id", 
+            "users.name",
+            "users.email", 
+            "countries.name as country_name"
+        )
+        ->join("countries", "countries.id", "=", "users.country_id")
+        ->get();
     }
 
     public function block(Request $request)
