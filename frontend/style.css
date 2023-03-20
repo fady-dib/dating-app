@@ -58,6 +58,14 @@
 
 .login-input{
     margin-bottom: 40px;
+    display:flex;
+    flex-direction: column;
+}
+
+.login-input label{
+    position:relative;
+    left:10px;
+    margin-bottom:2px;
 }
 
 .login-input input{
@@ -73,7 +81,6 @@
     border-radius: 20px;
     margin-bottom: 40px;
     background-color: var(--lightblue-color);
-    color: white
 }
 
 .box-footer{
