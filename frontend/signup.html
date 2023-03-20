@@ -23,15 +23,11 @@
             <div class="register-content">
                 <div class="register-input">
                     <label>Firstname</label>
-                    <input type="text" placeholder="Firstname" id="Firstname">
+                    <input type="text" placeholder="Firstname" id="firstname">
                 </div>
                 <div class="register-input">
                     <label>Lastname</label>
-                    <input type="text" placeholder="Lastname" id="Lastname">
-                </div>
-                <div class="register-input">
-                    <label for="dob">Date of birth</label>
-                    <input type="date" value="" id="dob">
+                    <input type="text" placeholder="Lastname" id="lastname">
                 </div>
                 <div class="register-input">
                     <label for="email">Email</label>
@@ -41,6 +37,26 @@
                     <label for="password">Password</label>
                     <input type="password" placeholder="Password" id="password">
                 </div>
+                <div class="register-input">
+                    <label for="dob">Date of birth</label>
+                    <input type="date" value="" id="dob">
+                </div>
+                <div class="register-radio">
+                    <div class="male">
+                        <input type="radio" checked id ="gender" name="gender" value="0">
+                        <label>Male
+                        </label>
+                       
+                    </div>
+                    <div class="female">
+                        <input type="radio" id=""name="gender" value="1">
+                        <label>
+                          Female
+                        </label>
+                      
+                    </div>
+                </div>
+                
                 <button type="submit" id="submit" onclick="register()">Register</button>
             </div>
             <div class="box-footer">
@@ -49,7 +65,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <footer class="footer"></footer>
     <script src="axios.min.js"></script>
