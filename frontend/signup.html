@@ -1,41 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style/signup.css">
     <title>Signup</title>
 </head>
+
 <body>
     <header class="header">
         <div class="name">
             <p>Dating app</p>
         </div>
-        <div class="register-container">
-            <div class="register-box">
-                <div class="register">
-                    <p>REGISTER</p>
+    </header>
+    <div class="register-container">
+        <div class="register-box">
+            <div class="register">
+                <p>REGISTER</p>
+            </div>
+            <div class="register-content">
+                <div class="register-input">
+                    <label>Firstname</label>
+                    <input type="text" placeholder="Firstname" id="Firstname">
                 </div>
-                <div class="register-content">
-                    <div class="register-input">
-                        <input type="text" placeholder="Name" id="name">
-                    </div>
-                    <div class="register-input">
-                        <input type="text" placeholder="Date of birth" id="dob">
-                    </div>
-                    <div class="register-input">
-                        <input type="text" placeholder="Email" id="email">
-                    </div>
-                    <div class="register-input">
-                        <input type="password" placeholder="Password" id="password">
-                    </div>
-                    <button type="submit" id="submit" onclick="register()">Register</button>
+                <div class="register-input">
+                    <label>Lastname</label>
+                    <input type="text" placeholder="Lastname" id="Lastname">
                 </div>
+                <div class="register-input">
+                    <label for="dob">Date of birth</label>
+                    <input type="date" value="" id="dob">
+                </div>
+                <div class="register-input">
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="Email" id="email">
+                </div>
+                <div class="register-input">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Password" id="password">
+                </div>
+                <button type="submit" id="submit" onclick="register()">Register</button>
+            </div>
+            <div class="box-footer">
+                <div class="login">
+                    <a id="login" href="index.html">Login</p>
                 </div>
             </div>
-    </header>
+        </div>
+        
+    </div>
+    <footer class="footer"></footer>
     <script src="axios.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

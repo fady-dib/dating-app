@@ -10,7 +10,6 @@
     font-size: 16px;
     font-family: sans-serif;
 }
-
 .header{
     display: flex;
     justify-content: center;
@@ -40,53 +39,71 @@
     display:flex;
     flex-direction: column;
     padding-top: 5vh;
-    /* background-color:var(--red-color); */
+    background-color:var(--red-color);
     
 }
-.login p{
+
+.register-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-box{
+    border: 1px solid black;
+    width: 500px;
+    height: 85vh;
+    border-radius: 20px;
+    display:flex;
+    flex-direction: column;
+    padding-top: 5vh;
+    background-color:var(---color);
+    
+}
+.register p{
     font-size: 1.25rem;
 }
 
-.login{
+.register{
     text-align: center;
     margin-bottom: 40px;
 }
-.login-content{
+.register-content{
     display:flex;
     flex-direction: column;
     align-items: center;
-    
 }
 
-.login-input{
+.register-input{
     margin-bottom: 40px;
     display:flex;
     flex-direction: column;
 }
 
-.login-input label{
+.register-input label{
     position:relative;
     left:10px;
     margin-bottom:2px;
 }
 
-.login-input input{
-    width: 300px;
-    height: 6vh;
+.register-input input{
+    width: 400px;
+    height: 4vh;
     text-align: center;
     border-radius: 20px;
 }
 
-.login-content button{
+.register-content button{
     width:250px;
     height:5vh;
     border-radius: 20px;
     margin-bottom: 40px;
+    
 }
-.login-content button:hover{
-    background-color: var(--red-color);
-    color:white
-
+.register-content button:hover{
+   background-color: var(--red-color);
+   color:white
 }
 
 .box-footer{
@@ -101,6 +118,4 @@
 .footer{
     height:80px;
     background-color: var(--red-color);
-    margin-top: 7px;
 }
-
