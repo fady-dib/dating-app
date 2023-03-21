@@ -58,7 +58,7 @@ class UserAction extends Controller
         $user_id = Auth::id();
         $user_gender = User::where('id', $user_id)->value('gender_id');
          $opposite = User::leftjoin('pictures','pictures.user_id','=','users.id')
-          ->where('users.gender_id','!=',$user_gender)->get();
+         ->select('*', 'users.id as id') ->where('users.gender_id','!=',$user_gender)->get();
         //  dd($opposite);
         // $users = User::where('gender_id','!=',$user_gender)->get();
         // $picture = Picture::where('user_id',$user_id)->get();
