@@ -66,7 +66,10 @@ class UserAction extends Controller
         //     "users"=>$users,
         //     "pictures"=>$picture];
         if (!empty($opposite)) {
-            return response()->json($opposite);
+            return response()->json([
+                'status' => 'success',
+                'data' => $opposite
+            ]);
         } else {
             return response()->json(['message' => 'No users']);
         }
@@ -75,14 +78,6 @@ class UserAction extends Controller
     public function test()
     {
         dd('hi');
-        $users = User::select(
-            "users.id", 
-            "users.name",
-            "users.email", 
-            "countries.name as country_name"
-        )
-        ->join("countries", "countries.id", "=", "users.country_id")
-        ->get();
     }
 
     public function block(Request $request)
