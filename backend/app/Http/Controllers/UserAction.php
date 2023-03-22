@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Block;
 use App\Models\Favorite;
+use App\Models\Message;
 use App\Models\Picture;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -243,6 +244,36 @@ class UserAction extends Controller
         else{
             $picture->delete();
         }
+    }
+
+    public function sendMessage(Request $request){
+        $validator = Validator::make($request->all(), [
+            'receiver_id' => 'required',
+            "message"=>'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => $validator->errors()
+            ], 400);
+        }
+
+        $user_id = Auth::id();
+        $receiver_id = $request->receiver_id;
+        $message = $request -> message;
+
+        Message::create([
+                'user_id' => $user_id,
+                'reciever_id' => $receiver_id,
+                'message' => $message
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Message sent successfuly'
+            ]);
+        
+
     }
     
     
